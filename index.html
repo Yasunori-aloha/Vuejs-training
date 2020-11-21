@@ -12,16 +12,24 @@
       <p>現在{{ number }}回クリックされています</p>
       <!-- <button v-on:click='number += 1'>カウントアップ</button> -->
       <button v-on:click='countUp'>カウントアップ</button>
+      <p v-on:mousemove='changeMousePosition'>マウスを載せてください</p>
+      <p>X:{{x}}、Y:{{y}}</p>
     </div>
     <script>
       new Vue({
         el: '#app',
         data: {
-          number: 0
+          number: 0,
+          x:0,
+          y:0
         },
         methods: {
           countUp: function(){
             this.number += 1
+          },
+          changeMousePosition: function(event){
+            this.x = event.clientX;
+            this.y = event.clientY;
           }
         }
       })
