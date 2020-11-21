@@ -9,14 +9,22 @@
     <script src="vue.js"></script>
 
     <div id="app">
-      <div>{{ html }}</div>
-      <div v-html='html'></div>
+      <a :[attribute]="url">Google</a>
+      <!-- <a :href="urlTwitter" :id="number">Twitter</a> -->
+      <!-- <a v-bind='{href: urlTwitter, id: number}'>Twitter</a> -->
+      <!-- 上と下は同じ意味になる。 -->
+      <a v-bind='twitterObject'>Twitter</a>
     </div>
     <script>
       new Vue({
         el: '#app',
         data: {
-          html: '<h1>h1です</h1>'
+          url: 'https://google.com',
+          attribute: 'href',
+          twitterObject: {
+            href: 'https://twitter.com',
+            id: 31
+          }
         }
       })
     </script>
