@@ -27,6 +27,14 @@
         lessThanThree: function () {
           return this.counter > 3 ? '3より上' : '3以下'
         }
+      },
+      watch: {
+        counter: function () {
+          const vm = this;
+          setTimeout(() => {
+            vm.counter = 0
+          }, 3000);
+        }
       }
     })
   </script>
