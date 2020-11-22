@@ -19,6 +19,7 @@
       <span v-on:mousemove.stop>反応しないでください</span></p>
     <!-- <a v-on:click='noEvent2' href="https://google.com">Google</a> -->
     <a v-on:click.prevent href="https://google.com">Google</a>
+    <input type="text" v-on:keyup.space='myAlert'>
     <p>X:{{x}}、Y:{{y}}</p>
   </div>
   <script>
@@ -42,6 +43,9 @@
         },
         noEvent2: function (event) {
           event.preventDefault();
+        },
+        myAlert: function (){
+          alert('アラート');
         }
       }
     })
