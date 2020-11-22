@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-  </head>
-  <body>
-    <script src="vue.js"></script>
 
-    <div id="app">
-      <a :[attribute]="url">Google</a>
-      <!-- <a :href="urlTwitter" :id="number">Twitter</a> -->
-      <!-- <a v-bind='{href: urlTwitter, id: number}'>Twitter</a> -->
-      <!-- 上と下は同じ意味になる。 -->
-      <a v-bind='twitterObject'>Twitter</a>
-    </div>
-    <script>
-      new Vue({
-        el: '#app',
-        data: {
-          url: 'https://google.com',
-          attribute: 'href',
-          twitterObject: {
-            href: 'https://twitter.com',
-            id: 31
-          }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <div id="app">
+    <p>現在{{ number }}回クリックされています</p>
+    <button @[event]='countUp'>カウントアップ</button>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        number: 0,
+        event: 'click'
+      },
+      methods: {
+        countUp: function () {
+          this.number += 1;
         }
-      })
-    </script>
-  </body>
+      }
+    })
+  </script>
+</body>
+
 </html>
