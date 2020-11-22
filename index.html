@@ -1,38 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-  </head>
-  <body>
-    <script src="vue.js"></script>
 
-    <div id="app">
-      <p>現在{{ number }}回クリックされています</p>
-      <!-- <button v-on:click='number += 1'>カウントアップ</button> -->
-      <button v-on:click='countUp(3)'>カウントアップ</button>
-      <p v-on:mousemove='changeMousePosition(10, $event)'>マウスを載せてください</p>
-      <p>X:{{x}}、Y:{{y}}</p>
-    </div>
-    <script>
-      new Vue({
-        el: '#app',
-        data: {
-          number: 0,
-          x:0,
-          y:0
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <div id="app">
+    <p>現在{{ number }}回クリックされています</p>
+    <!-- <button v-on:click='number += 1'>カウントアップ</button> -->
+    <button v-on:click='countUp(3)'>カウントアップ</button>
+    <p v-on:mousemove='changeMousePosition(10, $event)'>マウスを載せてください
+      <!-- <span v-on:mousemove='noEvent'>反応しないでください</span></p> -->
+      <span v-on:mousemove.stop>反応しないでください</span></p>
+    <!-- <a v-on:click='noEvent2' href="https://google.com">Google</a> -->
+    <a v-on:click.prevent href="https://google.com">Google</a>
+    <p>X:{{x}}、Y:{{y}}</p>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        number: 0,
+        x: 0,
+        y: 0
+      },
+      methods: {
+        countUp: function (times) {
+          this.number += 1 * times;
         },
-        methods: {
-          countUp: function(times){
-            this.number += 1 * times
-          },
-          changeMousePosition: function(divideNumber, event){
-            this.x = event.clientX / divideNumber;
-            this.y = event.clientY / divideNumber;
-          }
+        changeMousePosition: function (divideNumber, event) {
+          this.x = event.clientX / divideNumber;
+          this.y = event.clientY / divideNumber;
+        },
+        noEvent: function (event) {
+          event.stopPropagation();
+        },
+        noEvent2: function (event) {
+          event.preventDefault();
         }
-      })
-    </script>
-  </body>
+      }
+    })
+  </script>
+</body>
+
 </html>
