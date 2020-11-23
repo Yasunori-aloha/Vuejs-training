@@ -12,20 +12,12 @@
   <script src="vue.js"></script>
 
   <div id="app">
-    <template v-if="ok">
-      <p>Hello</p>
-      <p>Good Bye</p>
-      <p>おはよう</p>
-    </template>
-    <button @click='ok = !ok'>表示切り替えボタン</button>
   </div>
 
   <script>
     new Vue({
       el: '#app',
-      data: {
-        ok: true
-      }
+      data: {}
     })
   </script>
 </body>

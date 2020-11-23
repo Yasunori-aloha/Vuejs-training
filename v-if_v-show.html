@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="training.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <div id="app">
+    <button @click='ok = !ok'>表示切り替えボタン</button>
+    <!-- 切り替えの度にDOM生成・消去を繰り返すので、最初の実行段階から値が変化しない場合は'v-if'が適している。 -->
+    <p v-if="ok">If</p>
+    <!-- 最初の実行段階で表示しなくても、DOMを読み込む必要があるので、実行後に頻繁に値が変化する場合は'v-show'が適している。 -->
+    <p v-show="ok">Show</p>
+    <!-- v-elseディレクティブが使用できないので、条件部分でプロパティを否定する必要がある。 -->
+    <p v-show="!ok">Not ok</p>
+
+    <!-- templateタグにはv-showディレクティブは使用できない。 -->
+    <template v-show="ok">
+      <p>表示テスト</p>
+    </template>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        ok: true
+      }
+    })
+  </script>
+</body>
+
+</html>
