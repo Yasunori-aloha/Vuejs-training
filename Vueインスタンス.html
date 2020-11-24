@@ -21,13 +21,21 @@
 
   <div id="app">
     <p>{{message}}</p>
+    <P>{{name}}</P>
     <p>{{myData}}</p>
+    <button @click="message = 'ボタンから変更'">表示変更</button>
   </div>
 
   <div id="template">
   </div>
 
   <div id="render"></div>
+
+  <div id="app3">
+    <h1>こんにちは、{{name}}</h1>
+    <button @click="name = 'Yasunori'">名前を変更</button>
+    <button @click="destroy">インスタンスの破壊</button>
+  </div>
 
   <script>
     // Vueインスタンスを変数に入れることで、インスタンス外からでもアクセスすることができる様になる。
@@ -97,6 +105,42 @@
     console.log(dir);
     console.log(document);
     console.dir(document);
+
+    new Vue({
+      el: '#app3',
+      data: {
+        name: 'やすのり'
+      },
+      beforeCreate() {
+        console.log('beforeCreate');
+      },
+      created() {
+        console.log('created');
+      },
+      beforeMount() {
+        console.log('beforeMount');
+      },
+      mounted() {
+        console.log('mounted');
+      },
+      beforeUpdate() {
+        console.log('beforeUpdate');
+      },
+      updated() {
+        console.log('updated');
+      },
+      beforeDestroy() {
+        console.log('beforeDestroy');
+      },
+      destroyed() {
+        console.log('destroyed');
+      },
+      methods: {
+        destroy: function () {
+          this.$destroy()
+        }
+      },
+    })
   </script>
 </body>
 
