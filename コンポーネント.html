@@ -10,15 +10,45 @@
 <body>
   <script src="vue.js"></script>
 
-  <div id="app">
+  <div id="app1">
     <my-component></my-component>
+    <my-component2></my-component2>
     <hr>
     <my-component></my-component>
+    <my-component2></my-component2>
     <hr>
     <my-component></my-component>
+    <my-component2></my-component2>
+    <hr>
+  </div>
+
+  <div id="app2">
+    <my-component></my-component>
+    <my-component2></my-component2>
+    <hr>
+    <my-component></my-component>
+    <my-component2></my-component2>
+    <hr>
+    <my-component></my-component>
+    <my-component2></my-component2>
+    <hr>
   </div>
 
   <script>
+    const component = {
+      data() {
+        return {
+          number: 24
+        }
+      },
+      template: '<p>いいね({{number}})<button @click="increment">+1</button></p>',
+      methods: {
+        increment() {
+          this.number += 1;
+        }
+      },
+    }
+    // グローバル登録しているコンポーネント。
     Vue.component('my-component', {
       // 'data'をそのまま定義してしまうと複数繰り返し使用した際に、1つでも値が変更されると表示されている全ての値が変更されてしまうので、仕様として関数で定義しなければならない。
       data() {
@@ -36,7 +66,15 @@
     })
 
     new Vue({
-      el: '#app'
+      el: '#app1',
+      // 'my-component2'はここでしかローカル登録をしていないので、'#app2'では使用できない。
+      components: {
+        'my-component2': component
+      }
+    })
+
+    new Vue({
+      el: '#app2'
     })
   </script>
 </body>
