@@ -35,9 +35,15 @@
     <h1>こんにちは、{{name}}</h1>
     <button @click="name = 'Yasunori'">名前を変更</button>
     <button @click="destroy">インスタンスの破壊</button>
+    <hello></hello>
+    <hello></hello>
   </div>
 
   <script>
+    // 'hello'という名前で'コンポーネント'を定義することで、定義以降に記述しているVueインスタンスで繰り返し'hello'を使用することができる。
+    Vue.component('hello', {
+      template: '<p>こんにちは</p>'
+    });
     // Vueインスタンスを変数に入れることで、インスタンス外からでもアクセスすることができる様になる。
     const vm1 = new Vue({
       el: '#app1',
