@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <div id="app">
+    <my-component></my-component>
+    <hr>
+    <my-component></my-component>
+    <hr>
+    <my-component></my-component>
+  </div>
+
+  <script>
+    Vue.component('my-component', {
+      // 'data'をそのまま定義してしまうと複数繰り返し使用した際に、1つでも値が変更されると表示されている全ての値が変更されてしまうので、仕様として関数で定義しなければならない。
+      data() {
+        return {
+          number: 12
+        }
+      },
+      template: '<p>いいね({{number}})<button @click="increment">+1</button></p>',
+      // 'data'を関数定義することで、値を変更しても結果が全てのコンポーネントに反映されない様になる。
+      methods: {
+        increment() {
+          this.number += 1;
+        }
+      },
+    })
+
+    new Vue({
+      el: '#app'
+    })
+  </script>
+</body>
+
+</html>
