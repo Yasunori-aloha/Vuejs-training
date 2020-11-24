@@ -21,6 +21,7 @@
 
   <div id="app">
     <p>{{message}}</p>
+    <p>{{myData}}</p>
   </div>
 
   <script>
@@ -31,7 +32,7 @@
         message: 'Vueインスタンス1'
       }
     })
-    // vm1.message = '書き換えました'
+    vm1.message = '書き換えました'
 
     // Vueのインスタンスは複数作成することができる。
     const vm2 = new Vue({
@@ -46,12 +47,25 @@
       },
     })
 
+    // dataのプロパティを先にオブジェクトとして定義して、定義したオブジェクトを'Vueインスタンス'に使用することはできる。
+    const data = {
+      message: 'こんにちは',
+      name: '名前'
+    }
     const vm = new Vue({
       el: '#app',
-      data: {
-        message: 'こんにちは'
-      }
+      data: data,
+      computed: {
+        myData: function () {
+          return this.$data
+        }
+      },
     })
+
+    // Vueインスタンス外でプロパティを設定しても、Vue独自の'リアクティブシステム'が適用されない。
+    vm.name1 = 'vmネーム'
+
+    console.log(data === vm.$data);
   </script>
 </body>
 
