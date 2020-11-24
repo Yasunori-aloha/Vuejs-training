@@ -24,6 +24,11 @@
     <p>{{myData}}</p>
   </div>
 
+  <div id="template">
+  </div>
+
+  <div id="render"></div>
+
   <script>
     // Vueインスタンスを変数に入れることで、インスタンス外からでもアクセスすることができる様になる。
     const vm1 = new Vue({
@@ -53,19 +58,29 @@
       name: '名前'
     }
     const vm = new Vue({
-      el: '#app',
       data: data,
       computed: {
         myData: function () {
-          return this.$data
+          return this.$data;
         }
       },
     })
+
+    // '$mountメソッド'を使用することで、'elプロパティ'の内容を後から設定することができる。※動的に対象先を変更したい場合等に使用する。
+    vm.$mount('#app')
 
     // Vueインスタンス外でプロパティを設定しても、Vue独自の'リアクティブシステム'が適用されない。
     vm.name1 = 'vmネーム'
 
     console.log(data === vm.$data);
+
+    // 'templateプロパティ'の値として、タグ自体や2重括弧を記載することで、HTML上に描画することができる。
+    new Vue({
+      data: {
+        name: 'テンプレート'
+      },
+      template: '<h1>こんにちは、{{name}}</h1>'
+    }).$mount('#template')
   </script>
 </body>
 
