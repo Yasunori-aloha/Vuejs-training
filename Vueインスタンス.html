@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <div id="app1">
+    <p>{{message}}</p>
+  </div>
+
+  <div id="app2">
+    <p>{{message}}</p>
+    <button @click='changeMessage'>Vueインスタンス1のmessageを変更します。</button>
+  </div>
+
+  <div id="app">
+    <p>{{message}}</p>
+  </div>
+
+  <script>
+    // Vueインスタンスを変数に入れることで、インスタンス外からでもアクセスすることができる様になる。
+    const vm1 = new Vue({
+      el: '#app1',
+      data: {
+        message: 'Vueインスタンス1'
+      }
+    })
+    // vm1.message = '書き換えました'
+
+    // Vueのインスタンスは複数作成することができる。
+    const vm2 = new Vue({
+      el: '#app2',
+      data: {
+        message: 'Vueインスタンス2'
+      },
+      methods: {
+        changeMessage: function () {
+          vm1.message = 'インスタンスが変更されました。'
+        }
+      },
+    })
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        message: 'こんにちは'
+      }
+    })
+  </script>
+</body>
+
+</html>
