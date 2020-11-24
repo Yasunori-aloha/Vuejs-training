@@ -81,6 +81,22 @@
       },
       template: '<h1>こんにちは、{{name}}</h1>'
     }).$mount('#template')
+
+    // 'render関数'を使用することで'Vnode'という仮想ノードを作成することができる。
+    new Vue({
+      data: {
+        name: 'レンダー'
+      },
+      render(h) {
+        console.log(h('h1', 'こんばんは、' + this.name));
+        return h('h1', 'こんばんは、' + this.name);
+      },
+    }).$mount('#render')
+
+    const dir = document.createElement('div');
+    console.log(dir);
+    console.log(document);
+    console.dir(document);
   </script>
 </body>
 
