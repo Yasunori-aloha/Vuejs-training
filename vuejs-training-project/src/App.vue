@@ -1,6 +1,6 @@
 <template>
   <div>
-    <LikeHeader>
+    <LikeHeader header-text='Hello'>
       <h1>トータルいいね数</h1>
       <h2>{{ number }}</h2>
     </LikeHeader>
@@ -32,4 +32,7 @@ export default {
   div{
     border:1px solid blue;
   }
+  /* h1{
+    color: red;
+  } */
 </style>
