@@ -5,7 +5,7 @@
       <!-- 'slotタグ'の中身が無かった場合に表示する、デフォルト画面の内容を指定することができる。 -->
       <h2>デフォルトタイトル</h2>
     </slot>
-    <slot></slot>
+    <slot :user='user' text='text'></slot>
     <hr>
     <p>いいねの数</p>
     <slot name='number'></slot>

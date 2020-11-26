@@ -2,6 +2,7 @@
   <div>
     <!-- 'templateタグ'の外に記述しているHTMLタグは<slot v-slot:default></slot>というタグに全てがまとめられる。 -->
     <LikeHeader header-text='Hello'>
+      <h3>{{ user }}</h3>
       <h2>みなさん</h2>
 
       <!-- =''とすることによって子コンポーネントからデータを受け取ることができる。 -->
@@ -18,7 +19,13 @@
 
       <p>よろしくお願いします</p>
     </LikeHeader>
+
+    <LikeHeader v-slot="user">
+      <h3>{{ user }}</h3>
+    </LikeHeader>
+
     <LikeNumber :total-number='number' test-props='test' @my-click='incrementNumber'></LikeNumber>
+
     <LikeNumber :total-number='number' test-props='test' @my-click='number=$event'></LikeNumber>
   </div>
 </template>
