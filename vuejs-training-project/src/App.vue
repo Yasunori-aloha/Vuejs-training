@@ -6,21 +6,21 @@
       <h2>みなさん</h2>
 
       <!-- =''とすることによって子コンポーネントからデータを受け取ることができる。 -->
-      <template v-slot:title='slotProps' >
+      <template #[title]='slotProps' >
         <h1>トータルいいね数</h1>
         <h2>{{ slotProps.user.firstName }}</h2>
       </template>
 
       <h3>こんにちは</h3>
 
-      <template v-slot:number>
+      <template #number>
         <h2>{{ number }}</h2>
       </template>
 
       <p>よろしくお願いします</p>
     </LikeHeader>
 
-    <LikeHeader v-slot="user">
+    <LikeHeader #default="user">
       <h3>{{ user }}</h3>
     </LikeHeader>
 
@@ -35,7 +35,8 @@ import LikeHeader from './components/LikeHeader.vue'
 export default {
   data() {
     return {
-      number: 26
+      number: 26,
+      title: 'title'
     }
   },
   components:{
