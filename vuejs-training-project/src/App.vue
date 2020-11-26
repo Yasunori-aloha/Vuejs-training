@@ -1,12 +1,22 @@
 <template>
   <div>
+    <!-- 'templateタグ'の外に記述しているHTMLタグは<slot v-slot:default></slot>というタグに全てがまとめられる。 -->
     <LikeHeader header-text='Hello'>
-      <template v-slot:title>
+      <h2>みなさん</h2>
+
+      <!-- =''とすることによって子コンポーネントからデータを受け取ることができる。 -->
+      <template v-slot:title='slotProps' >
         <h1>トータルいいね数</h1>
+        <h2>{{ slotProps.user.firstName }}</h2>
       </template>
+
+      <h3>こんにちは</h3>
+
       <template v-slot:number>
         <h2>{{ number }}</h2>
       </template>
+
+      <p>よろしくお願いします</p>
     </LikeHeader>
     <LikeNumber :total-number='number' test-props='test' @my-click='incrementNumber'></LikeNumber>
     <LikeNumber :total-number='number' test-props='test' @my-click='number=$event'></LikeNumber>
