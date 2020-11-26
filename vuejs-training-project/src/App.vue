@@ -37,6 +37,12 @@
     </keep-alive>
     <!-- <About v-if="currentComponent === 'About'"></About>
     <Home v-if="currentComponent === 'Home'"></Home> -->
+    <div>
+      <h2>イベントフォーム</h2>
+      <label for='title'>タイトル</label>
+      <input id='title' type='text' v-model="eventData.title">
+      <p>{{eventData.title}}</p>
+    </div>
   </div>
 </template>
 
@@ -50,7 +56,10 @@ export default {
     return {
       number: 26,
       title: 'title',
-      currentComponent: 'Home'
+      currentComponent: 'Home',
+      eventData:{
+        title: 'タイトル'
+      }
     }
   },
   components:{
@@ -68,7 +77,7 @@ export default {
 
 <style scoped>
   div{
-    border:1px solid blue;
+    /* border:1px solid blue; */
   }
   /* h1{
     color: red;
