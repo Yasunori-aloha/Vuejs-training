@@ -1,8 +1,12 @@
 <template>
   <div>
     <LikeHeader header-text='Hello'>
-      <h1>トータルいいね数</h1>
-      <h2>{{ number }}</h2>
+      <template v-slot:title>
+        <h1>トータルいいね数</h1>
+      </template>
+      <template v-slot:number>
+        <h2>{{ number }}</h2>
+      </template>
     </LikeHeader>
     <LikeNumber :total-number='number' test-props='test' @my-click='incrementNumber'></LikeNumber>
     <LikeNumber :total-number='number' test-props='test' @my-click='number=$event'></LikeNumber>
