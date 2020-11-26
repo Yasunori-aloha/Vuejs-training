@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     increment() {
-      // 子コンポーネントから親コンポーネントへデータを渡す送り口
+      // 子コンポーネントから親コンポーネントへデータを渡す送り口。'$emitメソッド'でのカスタムイベント名は'ケバブケース'で命名する。
       this.$emit('my-click', this.totalNumber + 1);
     },
   },
