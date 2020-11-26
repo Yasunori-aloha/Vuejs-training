@@ -2,7 +2,7 @@
   <div>
     <LikeHeader></LikeHeader>
     <h2>{{ number }}</h2>
-    <LikeNumber :total-number='number'></LikeNumber>
+    <LikeNumber></LikeNumber>
     <LikeNumber :total-number='number'></LikeNumber>
   </div>
 
