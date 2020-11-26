@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>いいね({{ halfnumber }})</p>
+    <p>いいね({{ halfNumber }})</p>
     <button @click="increment">+1</button>
   </div>
 </template>
@@ -14,16 +14,22 @@ export default {
       // required: true,
       // 値が指定されていない場合は、デフォルト値を値として使用することを指定している。
       default: 10
+    },
+    testProps: {
+      type: String
     }
   },
+  // 配列で指定する場合
+  // props:['totalNumber','testProps']
   computed: {
-    halfnumber(){
+    halfNumber(){
       return this.totalNumber / 2
     }
   },
   methods: {
     increment() {
-      this.number += 1;
+      // 子コンポーネントから親コンポーネントへデータを渡す送り口
+      this.$emit('my-click', this.totalNumber + 1);
     },
   },
 };
