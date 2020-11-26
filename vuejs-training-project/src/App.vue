@@ -32,7 +32,9 @@
     <button @click='currentComponent = "Home"'>Home</button>
     <button @click='currentComponent = "About"'>About</button>
     <!-- 'is属性'を使用することでコンポーネントの切り替えを1行で済ませることができる。 -->
-    <component :is="currentComponent"></component>
+    <keep-alive>
+      <component :is="currentComponent"></component>
+    </keep-alive>
     <!-- <About v-if="currentComponent === 'About'"></About>
     <Home v-if="currentComponent === 'Home'"></Home> -->
   </div>
