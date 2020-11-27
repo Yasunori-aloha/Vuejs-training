@@ -11,4 +11,7 @@ export const japanNumber = {
       return value.toLowerCase();
     }
   },
+  created() {
+    console.log('created in Mixin');
+  },
 }
