@@ -11,7 +11,8 @@ Vue.directive('border', function(el, binding) {
   el.style.border = '2px solid black';
   // 'binding'の'value'の中にカスタムディレクティブに受け渡した値が入っている。
   console.log(binding);
-  el.style.borderWidth = binding.value;
+  el.style.borderWidth = binding.value.width;
+  el.style.borderColor = binding.value.color;
 })
 // Vue.directive('border', {
 //   bind(el, binding, vnode) {
