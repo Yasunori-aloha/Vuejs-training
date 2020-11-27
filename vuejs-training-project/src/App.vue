@@ -37,7 +37,7 @@
     </keep-alive>
     <!-- <About v-if="currentComponent === 'About'"></About>
     <Home v-if="currentComponent === 'Home'"></Home> -->
-    <div>
+    <div style='padding: 10rem;'>
       <h2>イベントフォーム</h2>
       <label for='title'>タイトル</label>
       <input id='title' type='text' v-model.lazy="eventData.title">
@@ -77,6 +77,13 @@
       <input type="radio" id="paid" value='有料' v-model="eventData.price">
       <label for="paid">有料</label>
 
+      <!-- セレクトボックスのデータバインディング作成 -->
+      <p>開催場所</p>
+      <select v-model="eventData.location">
+        <option v-for="(location) in locations" :key="location">{{ location }}</option>
+      </select>
+      <p>{{ eventData.location }}</p>
+
     </div>
   </div>
 </template>
@@ -92,6 +99,7 @@ export default {
       number: 26,
       title: 'title',
       currentComponent: 'Home',
+      locations: ['東京', '大阪', '名古屋'],
       eventData:{
         title: 'タイトル',
         maxNumber: 0,
@@ -100,7 +108,8 @@ export default {
         isPrivate: false,
         // 複数のチェックボックスの値を取得する場合は、配列を指定する。
         target: [],
-        price: '無料'
+        price: '無料',
+        location: '東京'
       }
     }
   },
