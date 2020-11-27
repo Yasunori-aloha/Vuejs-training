@@ -7,8 +7,8 @@ Vue.config.productionTip = false;
 // 'LikeNumber'をグローバルコンポーネントとして登録する。
 Vue.component('LikeNumber', LikeNumber);
 // 'bind'と'update'をよく使用する為、関数を記述することでその2つのフック関数を1つのコードにまとめることができる。
-Vue.directive('border', function() {
-  console.log('test');
+Vue.directive('border', function(el) {
+  el.style.border = ' 2px solid black'
 })
 // Vue.directive('border', {
 //   bind(el, binding, vnode) {
