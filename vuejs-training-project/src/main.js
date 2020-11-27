@@ -8,11 +8,20 @@ Vue.config.productionTip = false;
 Vue.component('LikeNumber', LikeNumber);
 // 'bind'と'update'をよく使用する為、関数を記述することでその2つのフック関数を1つのコードにまとめることができる。
 Vue.directive('border', function(el, binding) {
-  el.style.border = '2px solid black';
+  // el.style.border = '2px solid black';
   // 'binding'の'value'の中にカスタムディレクティブに受け渡した値が入っている。
-  console.log(binding);
+  // console.log(binding);
   el.style.borderWidth = binding.value.width;
   el.style.borderColor = binding.value.color;
+  // 'Argment(引数)'という意味の'arg'を使用することで、カスタムディレクティブの引数を受け取ることができる。
+  el.style.borderStyle = binding.arg
+  // '.round'という修飾子があればボーダーの角を丸める処理をする。
+  if (binding.modifiers.round) {
+    el.style.borderRadius = '0.5rem'
+  }
+  if (binding.modifiers.shadow) {
+    el.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.26)';
+  }
 })
 // Vue.directive('border', {
 //   bind(el, binding, vnode) {
