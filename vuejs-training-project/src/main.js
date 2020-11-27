@@ -42,6 +42,9 @@ Vue.directive('border', function(el, binding) {
   //   // ディレクティブが紐づいている要素から取り除かれた時
   // }
 // })
+Vue.filter('upperCase', function(value) {
+  return value.toUpperCase();
+})
 
 new Vue({
   render: h => h(App),
