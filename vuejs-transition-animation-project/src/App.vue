@@ -6,9 +6,11 @@
       <p v-if="show">hello</p>
     </transition>
 
-    <transition name='slide'>
-      <!-- 'div'等で囲ってしまえば、1つしか要素がないと判断される。ただしアニメーションは適用されなくなる。 -->
-      <div>
+    <!-- type属性を使用して'animation'か'transition'のどちらかを選択すると、選択した方の効果時間を優先して処理する。 -->
+    <transition name='slide' type='animation'>
+      <!-- 'div'等で囲ってしまえば、1つしか要素がないと判断される。ただし効果単一要素(今回なら'div')にしか適用されなくなる。 -->
+      <div v-if="show">
+        <!-- 子要素の効果は適用されない -->
         <p v-if="show">bye</p>
         <p>bye</p>
         <p>bye</p>
@@ -57,12 +59,19 @@ export default {
   /* 消える時の最後の状態 */
   opacity: 0;
 }
+
+.slide-enter,
+.slide-leave-to {
+  opacity: 0;
+}
 /* 最初と最後の状態を'@keyframs'で設定しているので、'enter'や'enter-to'が必要ない。 */
 .slide-enter-active {
   animation: slide-in 0.5s;
+  transition: opacity 0.5s;
 }
 .slide-leave-active {
   animation: slide-in 0.5s reverse;
+  transition: opacity 0.5s;
 }
 
 /* スライドするアニメーションをここで設定 */
