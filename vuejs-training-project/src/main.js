@@ -46,11 +46,11 @@ Vue.filter('upperCase', function(value) {
   return value.toUpperCase();
 })
 // グローバル登録した'mixin'は全ての'Vueインスタンス'で自動的に適用されてしまう。
-Vue.mixin({
-  created() {
-    console.log('global mixin');
-  },
-})
+// Vue.mixin({
+//   created() {
+//     console.log('global mixin');
+//   },
+// })
 
 new Vue({
   render: h => h(App),

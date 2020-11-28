@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Test></Test>
     <!-- 'templateタグ'の外に記述しているHTMLタグは<slot v-slot:default></slot>というタグに全てがまとめられる。 -->
     <LikeHeader header-text='Hello'>
       <!-- <h3>{{ user }}</h3>
@@ -92,6 +93,7 @@ import LikeHeader from './components/LikeHeader.vue'
 import About from './components/About.vue'
 import Home from './components/Home.vue'
 import EventTitle from './components/EventTitle.vue'
+import Test from './components/Test.vue';
 
 export default {
   data() {
@@ -117,7 +119,8 @@ export default {
     LikeHeader,
     About,
     Home,
-    EventTitle
+    EventTitle,
+    Test
   },
   methods: {
     incrementNumber(value){
