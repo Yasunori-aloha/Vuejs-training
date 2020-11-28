@@ -5,6 +5,16 @@
     <transition name='fade'>
       <p v-if="show">hello</p>
     </transition>
+
+    <transition name='slide'>
+      <!-- 'div'等で囲ってしまえば、1つしか要素がないと判断される。ただしアニメーションは適用されなくなる。 -->
+      <div>
+        <p v-if="show">bye</p>
+        <p>bye</p>
+        <p>bye</p>
+        <p>bye</p>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -47,6 +57,24 @@ export default {
   /* 消える時の最後の状態 */
   opacity: 0;
 }
+/* 最初と最後の状態を'@keyframs'で設定しているので、'enter'や'enter-to'が必要ない。 */
+.slide-enter-active {
+  animation: slide-in 0.5s;
+}
+.slide-leave-active {
+  animation: slide-in 0.5s reverse;
+}
+
+/* スライドするアニメーションをここで設定 */
+@keyframes slide-in {
+  from {
+    transform: translateX(100px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
 .main{
   width: 70%;
   margin: auto;
