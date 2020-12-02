@@ -4,6 +4,16 @@
     <button @click='myAnimation = "fade"'>Fade</button>
     <p>{{ myAnimation }}</p>
     <button @click='show = !show'>切り替え</button>
+
+    <!-- 複数の要素を入れる場合は、'v-show'ではなく'v-if'や'v-else'等を使用しないと表示されない。 -->
+    <transition name='fade'>
+      <!-- Vue.jsは同じタグが複数の場合は、要素の中身だけを変える様になっている為、'key属性'を使用して同じタグでも一意性を持たせる。 -->
+      <p v-if='show' key='bye'>さよなら</p>
+      <p v-else key='hello'>こんにちは</p>
+      <!-- <p v-show='show'>さよなら</p>
+      <p v-show='!show'>こんにちは</p> -->
+    </transition>
+
     <!-- 'enter-active-class'や'leave-active-class'等の属性を書き込み'Animate.css'を適用させることができる。 -->
     <transition appear enter-active-class="animate__animated animate__bounce" enter-to-class="" leave-active-class="animate__animated animate__shakeX" leave-to-class="">
       <p v-if="show">hello</p>
