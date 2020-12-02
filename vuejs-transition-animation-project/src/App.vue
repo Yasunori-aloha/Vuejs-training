@@ -4,8 +4,16 @@
     <button @click='myAnimation = "fade"'>Fade</button>
     <p>{{ myAnimation }}</p>
     <button @click='show = !show'>切り替え</button>
+    <br>
+
+    <button @click='myComponent = "ComponentA"'>ComponentA</button>
+    <button @click='myComponent = "ComponentB"'>ComponentB</button>
+    <transition name='fade' mode='out-in'>
+      <component :is="myComponent"></component>
+    </transition>
 
     <!-- 複数の要素を入れる場合は、'v-show'ではなく'v-if'や'v-else'等を使用しないと表示されない。 -->
+    <!-- 'mode属性'を使用することで、複数の要素の切り替わりをスムーズに行うことができる。 -->
     <transition name='fade' mode='out-in'>
       <!-- Vue.jsは同じタグが複数の場合は、要素の中身だけを変える様になっている為、'key属性'を使用して同じタグでも一意性を持たせる。 -->
       <p v-if='show' key='bye'>さよなら</p>
@@ -39,12 +47,20 @@
 </template>
 
 <script>
+import ComponentA from './components/ComponentA';
+import ComponentB from './components/ComponentB';
+
 export default {
+  components: {
+    ComponentA,
+    ComponentB
+  },
   data() {
     return {
       show: true,
       // 'transition'の'name属性'は'v-bindディレクティブ'を使用することで動的に変更させることができる。
-      myAnimation: 'slide'
+      myAnimation: 'slide',
+      myComponent: 'ComponentA'
     }
   },
   };
