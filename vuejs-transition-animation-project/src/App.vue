@@ -3,6 +3,20 @@
     <button @click='myAnimation = "slide"'>Slide</button>
     <button @click='myAnimation = "fade"'>Fade</button>
     <p>{{ myAnimation }}</p>
+    <br>
+
+    <button @click='add'>追加</button>
+    <ul style='width: 200px; margin: auto;'>
+      <transition-group>
+        <li
+          v-for="(number, index) in numbers" :key='index'
+          @click='remove(index)'
+          style='cursor: pointer;'
+        >{{ number }}</li>
+      </transition-group>
+    </ul>
+
+    <br>
     <button @click='show = !show'>切り替え</button>
     <br><br>
 
@@ -70,15 +84,28 @@ export default {
   },
   data() {
     return {
+      numbers: [0, 1, 2],
+      nextNumber: 3,
       show: true,
       // 'transition'の'name属性'は'v-bindディレクティブ'を使用することで動的に変更させることができる。
       myAnimation: 'slide',
       myComponent: 'ComponentA'
     }
   },
-  // JavaScriptでのアニメーションの設定は、'methods'に記述する。
-  // 'done'は、CSSアニメーションを併用適用する場合は、あっても無くても構わない。
   methods: {
+    // ランダムで'numbers'配列のどれかの数値を返す。
+    randomIndex() {
+      return Math.floor(Math.random() * this.numbers.length);
+    },
+    add() {
+      this.numbers.splice(this.randomIndex(), 0, this.nextNumber);
+      this.nextNumber += 1;
+    },
+    remove(index) {
+      this.numbers.splice(index, 1);
+    },
+    // JavaScriptでのアニメーションの設定は、'methods'に記述する。
+    // 'done'は、CSSアニメーションを併用適用する場合は、あっても無くても構わない。
     // 現れる前
     beforeEnter(el) {
       el.style.transform = 'scale(0)';
