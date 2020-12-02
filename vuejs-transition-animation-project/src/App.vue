@@ -7,9 +7,13 @@
 
     <button @click='add'>追加</button>
     <ul style='width: 200px; margin: auto;'>
-      <transition-group>
+      <!-- 'transition-groupタグ'では、複数要素を囲うことができる。 -->
+      <!-- 'transition-group'は'spanタグ'に置き換わるが、置き換わるタグを指定したい場合は'tag属性'を付与させる。 -->
+      <!-- '中の要素が置き換わる'ということがない為、'mode属性'は使用できない。 -->
+      <!-- 'v-moveクラス'という動かすためのクラスが新たに追加される。 -->
+      <transition-group name='fade' tag='div'>
         <li
-          v-for="(number, index) in numbers" :key='index'
+          v-for="(number, index) in numbers" :key='number'
           @click='remove(index)'
           style='cursor: pointer;'
         >{{ number }}</li>
@@ -164,6 +168,10 @@ export default {
   background-color: deeppink;
   border-radius: 100px;
 }
+/* 'transition-groupタグ'を使用している時だけ、追加されるクラス。 */
+.fade-move {
+  transition: transform 0.5s;
+}
 /* 'transitionコンポーネント'を使用する場合は'name属性値'以下の'enter-active'等のクラスを計6個作成する必要がある。 */
 /* 最初にクラスが追加され初期値を設定、その後1フレーム後にはクラスを削除する。 */
 .fade-enter {
@@ -187,6 +195,9 @@ export default {
 .fade-leave-active {
   /* 消える時のトランジションの状態 */
   transition: opacity 0.5s;
+  /* 'v-moveクラス'を使用して要素を削除する時に、消したい要素だけを浮かせるための記述。 */
+  position: absolute;
+  width: 200px;
 }
 .fade-leave-to {
   /* 消える時の最後の状態 */
