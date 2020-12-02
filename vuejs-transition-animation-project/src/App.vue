@@ -6,7 +6,7 @@
     <button @click='show = !show'>切り替え</button>
 
     <!-- 複数の要素を入れる場合は、'v-show'ではなく'v-if'や'v-else'等を使用しないと表示されない。 -->
-    <transition name='fade'>
+    <transition name='fade' mode='out-in'>
       <!-- Vue.jsは同じタグが複数の場合は、要素の中身だけを変える様になっている為、'key属性'を使用して同じタグでも一意性を持たせる。 -->
       <p v-if='show' key='bye'>さよなら</p>
       <p v-else key='hello'>こんにちは</p>
