@@ -7,11 +7,11 @@
     </transition>
 
     <!-- type属性を使用して'animation'か'transition'のどちらかを選択すると、選択した方の効果時間を優先して処理する。 -->
-    <transition name='slide' type='animation'>
+    <transition name='slide' type='animation' appear>
       <!-- 'div'等で囲ってしまえば、1つしか要素がないと判断される。ただし効果単一要素(今回なら'div')にしか適用されなくなる。 -->
       <div v-if="show">
         <!-- 子要素の効果は適用されない -->
-        <p v-if="show">bye</p>
+        <p v-show="show">bye</p>
         <p>bye</p>
         <p>bye</p>
         <p>bye</p>
