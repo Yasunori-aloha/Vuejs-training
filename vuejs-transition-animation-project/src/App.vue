@@ -2,7 +2,12 @@
   <div class='main'>
     <button @click='show = !show'>切り替え</button>
     <!-- 'transigionコンポーネント'には1つの要素しか入れられない。ただし、最終的に描画されるのが1つの要素なら複数入れていても大丈夫。 -->
-    <transition name='fade'>
+    <transition name='fade' appear>
+      <p v-if="show">hello</p>
+    </transition>
+
+    <!-- 'enter-active-class'や'leave-active-class'等の属性を書き込み'Animate.css'を適用させることができる。 -->
+    <transition appear enter-active-class="animate__animated animate__bounce" enter-to-class="" leave-active-class="animate__animated animate__shakeX" leave-to-class="">
       <p v-if="show">hello</p>
     </transition>
 
