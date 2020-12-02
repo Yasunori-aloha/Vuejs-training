@@ -4,6 +4,23 @@
     <button @click='myAnimation = "fade"'>Fade</button>
     <p>{{ myAnimation }}</p>
     <button @click='show = !show'>切り替え</button>
+    <br><br>
+
+    <!-- JavaScriptでのアニメーションをつける時に、CSSのアニメーションも同時につけることができる。 -->
+    <transition
+      name='fade'
+      @before-enter='beforeEnter'
+      @enter='enter'
+      @after-enter='afterEnter'
+      @enter-cancelled='enterCanselled'
+
+      @before-leave='beforeLeave'
+      @leave='leave'
+      @after-leave='afterLeave'
+      @leave-cancelled='leaveCanselled'
+    >
+      <div class="circle" v-if="show"></div>
+    </transition>
     <br>
 
     <button @click='myComponent = "ComponentA"'>ComponentA</button>
@@ -63,10 +80,54 @@ export default {
       myComponent: 'ComponentA'
     }
   },
+  // JavaScriptでのアニメーションの設定は、'methods'に記述する。
+  // 'done'は、CSSアニメーションを併用適用する場合は、あっても無くても構わない。
+  methods: {
+    // 現れる前
+    beforeEnter(el) {
+
+    },
+    // 現れる時
+    enter(el, done) {
+
+    },
+    // 現れた後
+    afterEnter(el) {
+
+    },
+    // 現れるアニメーションがキャンセルされた時
+    enterCanselled(el) {
+
+    },
+    // 消える前
+    beforeLeave(el) {
+
+    },
+    // 消える時
+    leave(el, done) {
+
+    },
+    // 消えた後
+    afterLeave(el) {
+
+    },
+    // 消えるアニメーションがキャンセルされた時
+    // 'v-showディレクティブ'を使用している時だけ、適用できる。
+    leaveCanselledel(el) {
+
+    }
+  },
   };
 </script>
 
 <style scoped>
+.circle {
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  background-color: deeppink;
+  border-radius: 100px;
+}
 /* 'transitionコンポーネント'を使用する場合は'name属性値'以下の'enter-active'等のクラスを計6個作成する必要がある。 */
 /* 最初にクラスが追加され初期値を設定、その後1フレーム後にはクラスを削除する。 */
 .fade-enter {
