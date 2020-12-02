@@ -7,17 +7,13 @@
     <br><br>
 
     <!-- JavaScriptでのアニメーションをつける時に、CSSのアニメーションも同時につけることができる。 -->
+    <!-- 'JavaScript'しか使用しない場合は、':CSS='false'と明示的に示すことで、一切CSSを適用しない様にすることができる。 -->
     <transition
-      name='fade'
+      :CSS='false'
       @before-enter='beforeEnter'
       @enter='enter'
-      @after-enter='afterEnter'
-      @enter-cancelled='enterCanselled'
 
-      @before-leave='beforeLeave'
       @leave='leave'
-      @after-leave='afterLeave'
-      @leave-cancelled='leaveCanselled'
     >
       <div class="circle" v-if="show"></div>
     </transition>
@@ -85,37 +81,50 @@ export default {
   methods: {
     // 現れる前
     beforeEnter(el) {
-
+      el.style.transform = 'scale(0)';
     },
     // 現れる時
     enter(el, done) {
-
+      let scale = 0;
+      // 10ms毎に同じ処理をし続ける。
+      const interval = setInterval(() => {
+        el.style.transform = `scale(${scale})`;
+        scale += 0.01;
+        if (scale > 1) {
+          clearInterval(interval);
+          done();
+        }
+      }, 10);
     },
     // 現れた後
-    afterEnter(el) {
-
-    },
+    // afterEnter(el) {
+    // },
     // 現れるアニメーションがキャンセルされた時
-    enterCanselled(el) {
-
-    },
+    // enterCanselled(el) {
+    // },
     // 消える前
-    beforeLeave(el) {
-
-    },
+    // beforeLeave(el) {
+    // },
     // 消える時
     leave(el, done) {
-
+      let scale = 1;
+      // 10ms毎に同じ処理をし続ける。
+      const interval = setInterval(() => {
+        el.style.transform = `scale(${scale})`;
+        scale -= 0.01;
+        if (scale < 0) {
+          clearInterval(interval);
+          done();
+        }
+      }, 10);
     },
     // 消えた後
-    afterLeave(el) {
-
-    },
+    // afterLeave(el) {
+    // },
     // 消えるアニメーションがキャンセルされた時
     // 'v-showディレクティブ'を使用している時だけ、適用できる。
-    leaveCanselledel(el) {
-
-    }
+    // leaveCanselledel(el) {
+    // }
   },
   };
 </script>
