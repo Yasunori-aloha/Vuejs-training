@@ -10,5 +10,9 @@ Vue.use(Router)
 export default new Router({
   // 'mode'を'history'にすることで、URLを'/#/'からでは無く'/'で始まる様に変更できる。ただし、ページ遷移するごとにページ読み込みが挟まる。
   mode: 'history',
-  routes: [{path: '/', component: Home}, {path: '/users', component: Users}]
+  routes: [
+    {path: '/', component: Home},
+    // '/:'とつけてその後に任意の値を指定することで、動的なURLとすることができる。'id'の部分は他の文字列等でも可能。
+    {path: '/users/:id', component: Users}
+  ]
 });
