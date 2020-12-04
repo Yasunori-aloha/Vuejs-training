@@ -29,6 +29,7 @@ export default new Router({
         default: Users,
         header: HeaderUsers
       },
+      // '名前付きビュー'を使用した場合は、'props'をオブジェクト化してデフォルトと名前付きビューで値を渡すのかどうかを判断させる。
       props: {
         default: true,
         header: false
@@ -37,6 +38,12 @@ export default new Router({
         {path: "posts", component: UsersPosts},
         {path: "profile", component: UsersProfile, name: 'users-id-profile'},
       ]
+    },{
+      // 定義したパス以外のパスへのリクエストがきた際には、rootへのパスをレスポンスとして返す。
+      // '/users*'と記述すれば、/users以降の値が定義したもの以外ならrootへのパスを返す。
+      path: '*',
+      // redirect: '/',
+      redirect: { path: '/' }
     }
   ]
 });
