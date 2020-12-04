@@ -48,15 +48,31 @@ export default new Router({
   ],
   // リンクに'#'が入っていた場合のスクロールの振る舞いを設定できる。
   // トランジションがある場合と無い場合の2つの方法で記述しないといけない。
-  scrollBehavior () {
+  scrollBehavior (to, from, savedPosition) {
+    return new Promise(resolve => {
+      // 'this'は'Routerのインスタンス'を指している。
+      // 'app'はこのRouterのインスタンスが挿入されているVueインスタンスのことを指している。
+      this.app.$root.$on('trigger-scroll', () => {
+        let position = { x: 0, y: 0 };
+        if (savedPosition) {
+          position = savedPosition;
+        }
+        if (to.hash) {
+          position = {
+            selector: to.hash
+          };
+        }
+        resolve(position);
+      });
+    })
     // 'x軸'と'y軸'を指定して、その場所にいく方法。
     // return { x: 0, y: 100 }
     // 'hash'を記述して、指定した'id'がある要素にいく方法。
-    return {
-      selector: '#next-user',
+    // return {
+      // selector: '#next-user',
       // 指定した'id'にから'x軸'と'y軸'の場所にいく。
-      offset: { x: 0, y: 100 }
-    }
+    //   offset: { x: 0, y: 100 }
+    // }
     // to: 遷移先のページ情報が格納されている。
     // from: 遷移元のページ情報が格納されている。
     // savedPosition: ページ遷移した際に、'遷移元のページでスクロールしていた場所'の情報が格納されている。
