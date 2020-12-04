@@ -1,11 +1,21 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home.vue';
-import Users from './views/Users.vue';
-import UsersPosts from './views/UsersPosts.vue';
-import UsersProfile from './views/UsersProfile.vue';
-import HeaderHome from './views/HeaderHome.vue';
-import HeaderUsers from './views/HeaderUsers.vue';
+// import Home from './views/Home.vue';
+// import Users from './views/Users.vue';
+// import UsersPosts from './views/UsersPosts.vue';
+// import UsersProfile from './views/UsersProfile.vue';
+// import HeaderHome from './views/HeaderHome.vue';
+// import HeaderUsers from './views/HeaderUsers.vue';
+
+// 変数とアロー関数を使用することで、ページが呼び出されたらコンポーネントのデータを取ってくるように宣言している。
+// 'webpackChunkName'でname属性を指定すると、呼び出してくる際のファイル名を指定できる。※指定しない場合は上から順に0, 1, 2
+// 'name属性'を同じ名前にすると、ファイルを別々にせず一緒に持ってくることができる。
+const Home = () => import(/* webpackChunkName: 'Home' */ './views/Home.vue');
+const Users = () => import(/* webpackChunkName: 'Users' */ './views/Users.vue');
+const UsersPosts = () => import(/* webpackChunkName: 'UsersPosts' */ './views/UsersPosts.vue');
+const UsersProfile = () => import(/* webpackChunkName: 'UsersProfile' */ './views/UsersProfile.vue');
+const HeaderHome = () => import(/* webpackChunkName: 'HeaderHome' */ './views/HeaderHome.vue');
+const HeaderUsers = () => import(/* webpackChunkName: 'HeaderUsers' */ './views/HeaderUsers.vue');
 
 // '.use'は'プラグイン'を適用するための記述。
 Vue.use(Router)

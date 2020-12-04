@@ -22,19 +22,19 @@
     // 'router'内で設定しているコンポーネントしか使用することができないナビゲーションガード。
     // 'Users'のインスタンスが生成される前に実行される処理のため、'this'が使用できない。
     beforeRouteEnter (to, from, next) {
-      console.log('beforeRouteEnter');
+      // console.log('beforeRouteEnter');
       next(vm => {
         console.log(vm.id);
       });
     },
     // 'Users'のインスタンスが生成・消去はされていないけれど、URLが変更されて時に実行される処理。
     beforeRouteUpdate (to, from, next) {
-      console.log('beforeRouteUpdate');
+      // console.log('beforeRouteUpdate');
       next();
     },
     // インスタンスが消去されて、別のページに遷移した時に実行される処理。
     beforeRouteLeave (to, from, next) {
-      console.log('beforeRouteLeave');
+      // console.log('beforeRouteLeave');
       // ページを離れる際にアラートを表示して、'true'ならページを遷移させる。
       const isLeave = window.confirm('このページを本当に離れますか？');
       if (isLeave) {
