@@ -20,6 +20,11 @@ export default new Router({
       components: {
         default: Home,
         header: HeaderHome
+      },
+      // 特定ページの遷移前に、処理を実行したい場合にする記述方法。今回は'/'に遷移する前に処理を実行する。
+      beforeEnter: (to, from, next) => {
+        console.log('local-beforeEnter');
+        next();
       }
     },
     // '/:'とつけてその後に任意の値を指定することで、動的なURLとすることができる。'id'の部分は他の文字列等でも可能。
