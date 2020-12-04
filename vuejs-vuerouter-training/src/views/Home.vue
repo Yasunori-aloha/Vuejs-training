@@ -10,7 +10,7 @@ export default {
   methods: {
     toUsers() {
       // '$router'で'view-router'にアクセスすることができる。
-      this.$router.push('users');
+      this.$router.push('/users/1');
     },
   },
 }
