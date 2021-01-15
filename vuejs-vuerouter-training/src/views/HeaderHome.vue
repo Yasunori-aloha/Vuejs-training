@@ -7,18 +7,20 @@
     <!-- 'exact属性'を付与すると、URLが完全一致しない限りはアクティブにならない様に設定することができる。 -->
     <router-link to="/" active-class='link__active' exact class='link'>Home</router-link>
     <router-link to="/users/1/profile#next-user" active-class='link__active' exact class='link'>Users</router-link>
-    <button @click='increment'>+1</button>
+    <button @click='increment(2)'>+1</button>
     <button @click='decrement(2)'>-1</button>
 	</nav>
 </template>
 
 <script>
 import { mapMutations } from "vuex";
+import { mapActions } from "vuex";
 export default {
   methods: {
-    increment() {
-      this.$store.dispatch("increment", 2); // 'actions'に設定した関数は、'dispatch'で呼び出す。
-    },
+    ...mapActions(["increment"]),
+    // increment() {
+    //   this.$store.dispatch("increment", 2); // 'actions'に設定した関数は、'dispatch'で呼び出す。
+    // },
     ...mapMutations(["decrement"]), // 'mapMutations'を使用した場合は数値等の引数は'template'内に記載する。
     // increment() {
     //   this.$store.commit('increment', 2); // 'commitメソッド'を使用することで'mutations'の関数を呼び出すことができる。
