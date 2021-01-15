@@ -8,18 +8,22 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   // 'Vuex'のプロパティを取得する際は、'computed'に記載するようにする。
   computed: {
-    doubleCount() {
-      // 'Vuex'に定義した関数を使用することができる。
-      // return this.$store.state.count * 2;
-      return this.$store.getters.doubleCount;
+    ...mapGetters(["doubleCount", "tripleCount"]) // 'mapGetters'を使用するだけで、'store.js'に定義した関数が使用できる。
     },
-    tripleCount() {
-      return this.$store.getters.tripleCount;
-    }
-  },
+  // {
+  //   doubleCount() {
+  //     // 'Vuex'に定義した関数を使用することができる。
+  //     // return this.$store.state.count * 2;
+  //     return this.$store.getters.doubleCount;
+  //   },
+  //   tripleCount() {
+  //     return this.$store.getters.tripleCount;
+  //   }
+  // },
   methods: {
     toUsers() {
       // '$router'で'view-router'にアクセスすることができる。
