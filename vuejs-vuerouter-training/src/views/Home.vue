@@ -14,7 +14,7 @@ import { mapGetters } from "vuex";
 export default {
   // 'Vuex'のプロパティを取得する際は、'computed'に記載するようにする。
   computed: {
-    ...mapGetters(["doubleCount", "tripleCount"]), // 'mapGetters'を使用するだけで、'store.js'に定義した関数が使用できる。
+    ...mapGetters("count",["doubleCount", "tripleCount"]), // 'mapGetters'を使用するだけで、'store.js'に定義した関数が使用できる。
     message: {
       get() {
         return this.$store.getters.message;

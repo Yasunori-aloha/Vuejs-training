@@ -21,6 +21,8 @@ const actions = {
   }
 };
 export default {
+  // '名前空間'を使用することで、その'modulesファイル'ごとに同じプロパティ名等を使用することができるようになる。
+  namespaced: true,
   state,
   getters,
   mutations,
