@@ -7,8 +7,23 @@
     <!-- 'exact属性'を付与すると、URLが完全一致しない限りはアクティブにならない様に設定することができる。 -->
     <router-link to="/" active-class='link__active' exact class='link'>Home</router-link>
     <router-link to="/users/1/profile#next-user" active-class='link__active' exact class='link'>Users</router-link>
+    <button @click='increment'>+1</button>
+    <button @click='decrement'>-1</button>
 	</nav>
 </template>
+
+<script>
+export default {
+  methods: {
+    increment() {
+      this.$store.state.count++;
+    },
+    decrement() {
+      this.$store.state.count--;
+    },
+  },
+}
+</script>
 
 <style scoped>
   .link {

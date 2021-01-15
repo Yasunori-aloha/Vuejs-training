@@ -3,6 +3,7 @@ import App from './App.vue'
 
 // 'router.js'のことを使える様にインポートする。
 import router from './router';
+import store from './store';
 
 Vue.config.productionTip = false
 
@@ -16,5 +17,6 @@ router.beforeEach((to, from, next) => {
 new Vue({
   // 'Vue.use(Router)'を記述したことで'router'というキーが使用可能になっている。
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')
