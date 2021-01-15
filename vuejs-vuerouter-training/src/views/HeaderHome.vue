@@ -16,10 +16,12 @@
 export default {
   methods: {
     increment() {
-      this.$store.state.count++;
+      this.$store.commit('increment', 2); // 'commitメソッド'を使用することで'mutations'の関数を呼び出すことができる。
+      // 'state'の値を直接変更してしまうため、あまりよろしくない。
+      // this.$store.state.count++;
     },
     decrement() {
-      this.$store.state.count--;
+      this.$store.commit('decrement', 2);
     },
   },
 }
